@@ -15,7 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proto"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.MainActivity"></activity>
+        <activity
+            android:name=".activity.BusinessCardActivity"
+            android:label="@string/title_activity_business_cared"
+            android:theme="@style/Theme.Proto.NoActionBar" />
+        <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

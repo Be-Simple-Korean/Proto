@@ -31,7 +31,7 @@ public class PermissionUtil {
      * @param activity
      */
     public void requestAllPermissions(Activity activity) {
-        ActivityCompat.requestPermissions(activity, permissions, Constants.REQEUEST_ALL_PERMISSIONS);
+        ActivityCompat.requestPermissions(activity, permissions, Constants.REQUEST_ALL_PERMISSIONS);
     }
 
     /**
@@ -41,7 +41,7 @@ public class PermissionUtil {
      * @param permissions
      */
     public void checkPermissionsResult(Context context, int requestCode, @NotNull String[] permissions) {
-        if (requestCode == Constants.REQEUEST_ALL_PERMISSIONS) {
+        if (requestCode == Constants.REQUEST_ALL_PERMISSIONS) {
             for (String permission : permissions) {
                 if (ActivityCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_DENIED) {
                     Log.e("권한 거부됨", permission);

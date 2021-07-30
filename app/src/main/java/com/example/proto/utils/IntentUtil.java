@@ -1,10 +1,8 @@
 package com.example.proto.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
@@ -49,7 +47,7 @@ public class IntentUtil {
     public void moveToStore(String packageName) {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
-        String uri = Constants.BASE_PLAY_URL_ + packageName;
+        String uri = Constants.BASE_PLAYSTORE_URL + packageName;
         intent.setData(Uri.parse(uri));
         mContext.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
@@ -65,6 +63,15 @@ public class IntentUtil {
     }
 
     /**
+     * 네이미앱으로 이동
+     */
+    public void moveToNamee() {
+        Intent intent = mContext.getPackageManager().getLaunchIntentForPackage(Constants.NAMEE_PACKAGE_NAME);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mContext.startActivity(intent);
+    }
+
+    /**
      * 갤러리로 이동
      *
      * @param startActivityResult
@@ -76,9 +83,32 @@ public class IntentUtil {
         startActivityResult.launch(intent);
     }
 
+    /**
+     * 사진파일을 가져온것인지 확인
+     *
+     * @param result
+     * @return
+     */
     public boolean resultFromGallery(ActivityResult result) {
         return result.getData().getDataString().contains("image");
 
+    }
+
+    /**
+     * 웹브라우저 띄우기
+     * @param url
+     */
+    public void moveToBrowser(String url) {
+        Intent i = new Intent();
+        i.setAction(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        if (checkLaunched(Constants.BROWSER_PACKAGE_NAME)) {
+            i.setPackage(Constants.BROWSER_PACKAGE_NAME);
+        } else if (checkLaunched(Constants.CHROME_PACKAGE_NAME)) {
+            i.setPackage(Constants.CHROME_PACKAGE_NAME);
+        }
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        mContext.startActivity(i);
     }
 
 }

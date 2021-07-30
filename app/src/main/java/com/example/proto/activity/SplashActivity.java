@@ -18,7 +18,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private ActivitySplashBinding mBinding = null;
 
-    private Handler mHandler = new Handler(Looper.getMainLooper()) {
+    private final Handler mHandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
@@ -39,4 +39,8 @@ public class SplashActivity extends AppCompatActivity {
         mHandler.sendEmptyMessageDelayed(SPLASH, SPLASH_DELAY_TIME);
     }
 
+    @Override
+    public void onBackPressed() {
+
+    }
 }

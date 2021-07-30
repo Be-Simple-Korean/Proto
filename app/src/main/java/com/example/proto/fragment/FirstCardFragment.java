@@ -2,8 +2,6 @@ package com.example.proto.fragment;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +17,6 @@ import com.example.proto.Constants;
 import com.example.proto.R;
 import com.example.proto.databinding.FragmentFirstCardBinding;
 import com.example.proto.utils.IntentUtil;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 public class FirstCardFragment extends Fragment {
 

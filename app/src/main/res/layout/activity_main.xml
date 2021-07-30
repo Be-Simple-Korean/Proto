@@ -11,11 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:itemTextColor="@color/black"
         app:itemIconTint="@color/black"
+        app:itemRippleColor="@android:color/transparent"
         app:itemTextAppearanceActive="@style/TextStyleActive"
         app:itemTextAppearanceInactive="@style/TextStyleInActive"
-        app:itemRippleColor="@android:color/transparent"
+        app:itemTextColor="@color/black"
         app:menu="@menu/menu" />
 
     <fragment
