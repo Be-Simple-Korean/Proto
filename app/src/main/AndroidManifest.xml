@@ -6,6 +6,17 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <queries>
+        <package android:name="com.naverfin.payapp"/>
+        <package android:name="com.android.chrome" />
+        <package android:name="com.sec.android.app.sbrowser" />
+        <package android:name="com.nhn.android.search" />
+        <package android:name="kr.co.namee.nameemobile" />
+        <package android:name="com.lge.camera" />
+        <package android:name="com.sec.android.app.camera" />
+        <package android:name="com.google.android.documentsui" />
+    </queries>
+
     <application
         android:name=".ProtoApplication"
         android:allowBackup="true"
@@ -15,6 +26,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proto"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activity.NoticeBoardActivity"></activity>
+        <activity android:name=".activity.SaveBCardActivity" />
         <activity
             android:name=".activity.BusinessCardActivity"
             android:label="@string/title_activity_business_cared"

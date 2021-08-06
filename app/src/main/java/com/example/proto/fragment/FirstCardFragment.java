@@ -1,5 +1,6 @@
 package com.example.proto.fragment;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,12 +18,13 @@ import com.example.proto.Constants;
 import com.example.proto.R;
 import com.example.proto.databinding.FragmentFirstCardBinding;
 import com.example.proto.utils.IntentUtil;
+import com.example.proto.utils.PermissionUtil;
 
 public class FirstCardFragment extends Fragment {
 
     private FragmentFirstCardBinding mBinding = null;
 
-    private final ActivityResultLauncher<Intent> startActivityResult = registerForActivityResult(
+    private final ActivityResultLauncher<Intent> mStartActivityResult = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
@@ -33,9 +35,26 @@ public class FirstCardFragment extends Fragment {
             }
     );
 
+    private ActivityResultLauncher<String> mPermissionLauncher = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(),
+            result -> {
+                if (result) {
+                    IntentUtil.getInstance().moveToFolder(mStartActivityResult, Constants.MIME_TYPE_IMAGE);
+                } else {
+                    PermissionUtil.getInstance().manualSetPermission(getContext());
+                }
+            });
+
     private View.OnClickListener mOnClickListener = v -> {
-        IntentUtil.getInstance().moveToFolder(startActivityResult, Constants.MIME_TYPE_IMAGE);
+        mPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
+//        if (PermissionUtil.getInstance().checkStoragePermission(getContext())) {
+//            IntentUtil.getInstance().moveToFolder(mStartActivityResult, Constants.MIME_TYPE_IMAGE);
+//        } else {
+//            Log.e("수행","!");
+//            PermissionUtil.getInstance().requestStoragePermission(getActivity());
+//        }
     };
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +75,11 @@ public class FirstCardFragment extends Fragment {
         return mBinding.getRoot();
     }
 
+    /**
+     * 갤러리에서 가져온 이미지 세팅
+     *
+     * @param result
+     */
     private void setImageFromGallery(ActivityResult result) {
         Glide.with(this)
                 .load(result.getData().getData())

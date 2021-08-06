@@ -14,5 +14,6 @@ public class Constants {
     //*******************************************************************
     // 퍼미션 관련 상수
     public static final int REQUEST_ALL_PERMISSIONS = 0;
+    public static final int REQUEST_STORAGE_PERMISSIONS = 1;
 
 }

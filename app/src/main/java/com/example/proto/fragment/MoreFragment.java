@@ -1,5 +1,6 @@
 package com.example.proto.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.proto.R;
+import com.example.proto.activity.NoticeBoardActivity;
 import com.example.proto.databinding.FragmentMoreBinding;
 
 public class MoreFragment extends Fragment {
@@ -23,6 +25,13 @@ public class MoreFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        init();
         return mBinding.getRoot();
+    }
+
+    private void init(){
+        mBinding.tvNotice.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), NoticeBoardActivity.class));
+        });
     }
 }

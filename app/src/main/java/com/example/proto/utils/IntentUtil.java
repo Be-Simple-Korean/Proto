@@ -3,6 +3,7 @@ package com.example.proto.utils;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
@@ -56,10 +57,18 @@ public class IntentUtil {
      * 네이버페이로 이동
      */
     public void moveToNaverPay() {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(Constants.CONNECT_NAVER_PAY_URL));
-        mContext.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+//        Intent intent = new Intent();
+//        intent.setAction(Intent.ACTION_VIEW);
+//        intent.setPackage("com.naverfin.payapp");
+        // 네이버앱을 통한 접근
+//        intent.setData(Uri.parse(Constants.CONNECT_NAVER_PAY_URL));
+//        mContext.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+
+        //직접접근
+//        Intent intent = mContext.getPackageManager().getLaunchIntentForPackage("com.naverfin.payapp");
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        mContext.startActivity(intent);
+
     }
 
     /**
@@ -96,6 +105,7 @@ public class IntentUtil {
 
     /**
      * 웹브라우저 띄우기
+     *
      * @param url
      */
     public void moveToBrowser(String url) {
